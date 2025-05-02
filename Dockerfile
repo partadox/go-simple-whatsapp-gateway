@@ -1,23 +1,12 @@
 # Stage 1: Build stage
-FROM golang:1.21-alpine AS builder
+FROM golang:1.24-alpine AS builder
 
 # Install build dependencies for SQLite
-RUN apk add --no-cache gcc musl-dev sqlite-dev
+RUN apk add --no-cache gcc musl-dev sqlite-dev git
 
 WORKDIR /app
 
-# Copy go.mod dan go.sum terlebih dahulu
-COPY go.mod go.sum ./
-
-# Edit go.mod untuk kompatibilitas
-RUN sed -i 's/go 1.24.2/go 1.21/' go.mod && \
-    sed -i 's/go 1.23.0/go 1.21/' go.mod && \
-    sed -i '/toolchain/d' go.mod
-
-# Download dependencies
-RUN go mod download
-
-# Copy seluruh kode sumber
+# Copy semua file
 COPY . .
 
 # Build dengan CGO_ENABLED=1
