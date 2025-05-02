@@ -3,7 +3,9 @@ FROM golang:1.20-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN go mod download
-RUN go build -o app
+# RUN go build -o app
+# Build with CGO enabled
+RUN CGO_ENABLED=1 go build -o app
 
 FROM alpine:latest
 
