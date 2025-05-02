@@ -41,11 +41,11 @@ func main() {
 	// Setup router
 	router := gin.Default()
 	
-	// Load templates with absolute path
-	router.LoadHTMLGlob("D:/Dev/go-simple-whatsapp-gateway2/templates/*")
+	// Load templates with relative path
+	router.LoadHTMLGlob("./templates/*")
 	
-	// Static files with absolute path
-	router.Static("/static", "D:/Dev/go-simple-whatsapp-gateway2/static")
+	// Static files with relative path
+	router.Static("/static", "./static")
 
 	// Setup handlers
 	handlers.RegisterHandlers(router, clientManager, cfg.APIKey)
