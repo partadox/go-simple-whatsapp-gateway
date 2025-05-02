@@ -25,7 +25,7 @@ WORKDIR /app
 COPY --from=builder /app/app .
 COPY --from=builder /app/templates ./templates
 COPY --from=builder /app/static ./static
-COPY --from=builder /app/.env ./.env
+# COPY --from=builder /app/.env ./.env
 
 # Buat direktori data WhatsApp
 RUN mkdir -p /app/whatsapp-data
